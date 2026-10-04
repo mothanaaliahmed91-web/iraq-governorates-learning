@@ -17,6 +17,10 @@ https://mothanaaliahmed91-web.github.io/iraq-governorates-learning/
 
 بعد تعديل الموقع، ادفع التغييرات إلى `main` وانتظر نجاح مهمة **Deploy educational site to GitHub Pages** في تبويب **Actions** قبل مشاركة التحديث. يجهز سير العمل مجلد `_site/` من ملفات التشغيل فقط، لذلك لا ينشر المواد المصدرية أو ملفات التطوير غير اللازمة للواجهة.
 
+## إصدار v1.0 والنسخة دون إنترنت
+
+الإصدار الثابت الأول متاح في [صفحة إصدار v1.0](https://github.com/mothanaaliahmed91-web/iraq-governorates-learning/releases/tag/v1.0)، وتتضمن ملف ZIP جاهزاً للنقل بالفلاش. تحتوي النسخة المستقلة مشغّل Windows محلياً؛ يتطلب Windows PowerShell 5.1 ومتصفحاً حديثاً، ولا يلزم Python أو Node.js. لا تفتح `index.html` مباشرة بسبب JavaScript modules؛ شغّل `تشغيل_بدون_إنترنت.bat` واترك نافذته مفتوحة.
+
 تظل نسخة الملفات قابلة للتشغيل دون اتصال عند تقديمها عبر خادم HTTP محلي بسبب استخدام JavaScript modules. يعمل محتوى الموقع وصوره وخرائطه وصوته محلياً؛ رابط Google Earth التفاعلي وحده خدمة خارجية اختيارية ويتطلب الاتصال بالإنترنت.
 
 ## Use
