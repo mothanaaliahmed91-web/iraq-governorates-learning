@@ -1,0 +1,17 @@
+/node_modules/
+/output/
+/.vscode/
+
+.env
+.env.*
+!.env.example
+
+*.bak
+*.tmp
+*.temp
+*.pdf
+*.docx
+*.zip
+
+/temp-update-map.js
+/vlc-help.txt
