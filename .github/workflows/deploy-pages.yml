@@ -39,15 +39,16 @@ jobs:
         with:
           enablement: true
 
+      - name: Assemble static site
+        run: |
+          mkdir -p _site
+          cp index.html .nojekyll _site/
+          cp -R src assets maps _site/
+
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: |
-            index.html
-            src/
-            assets/
-            maps/
-            .nojekyll
+          path: _site/
 
       - name: Deploy to GitHub Pages
         id: deployment
