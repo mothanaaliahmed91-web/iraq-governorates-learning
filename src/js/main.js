@@ -36,7 +36,7 @@ let ignoreClickUntil = 0;
 let returnFocus;
 const icon = (name, cls='') => `<img class="icon ${cls}" src="assets/icons/${name}.svg" alt="" aria-hidden="true">`;
 const btn = (action, label, symbol, cls='', extra='') => `<button type="button" class="button ${cls}" data-action="${action}" ${extra}>${symbol?icon(symbol):''}<span>${label}</span></button>`;
-const schoolIdentity = () => `<div class="school-watermark" aria-hidden="true"><img src="assets/images/ui/school-logo.png" alt=""></div>`;
+const schoolIdentity = () => `<div class="school-watermark" aria-hidden="true"><img src="assets/images/ui/lara-haider-watermark.png" alt=""></div>`;
 const schoolLockup = () => `<div class="school-lockup"><img src="assets/images/ui/school-logo.png" alt="شعار مدارس الإمام علي بن أبي طالب ع النموذجية الأهلية" onerror="this.closest('.school-lockup').hidden=true"><span>مدارس الإمام علي بن أبي طالب <b>(ع)</b><small>النموذجية الأهلية</small></span></div>`;
 const escapeHTML = value => String(value).replace(/[&<>"']/g,character=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
 function saveXo() { safeSet('iraq-journey-duhok-xo',JSON.stringify({names:xo.teams,totals:xoTotals,muted})); }
