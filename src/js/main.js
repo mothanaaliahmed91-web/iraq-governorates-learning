@@ -1,6 +1,8 @@
 import {media, topics, discoveryTopics, districts, subdistricts, placeNotes, gallery, classifyCards, matches, orderSteps, questions, xoQuestions, mountainQuestions} from '../data/duhok-data.js';
 import {curriculumIndex} from '../data/curriculum-index.js';
 import {iraqLearningGoals, iraqLocation, iraqTerrain, iraqClimate, iraqRainfallOrder, iraqWaterSources, iraqWaterMatches, iraqHistory, iraqUnity} from '../data/iraq-data.js';
+import {iraqPages, renderIraqPage, renderIraqChallengeSetup, renderIraqChallenge, iraqMapNote} from './lessons/iraq-pages.js';
+import {iraqQuestions} from '../data/iraq-questions.js';
 import {AmbienceAudio} from './core/ambience-audio.js';
 
 const app = document.querySelector('#app');
@@ -21,7 +23,10 @@ let xo = xoFresh();
 let mountain = mountainFresh();
 let mode = 'index';
 let tab = 'overview';
-let iraqActivity = {neighbor:null, terrainGuess:null, rainfall:[], rainfallFeedback:'', selectedResource:null, waterMatches:[], waterFeedback:''};
+let iraqPage = 0;
+let iraqReturnPage = 0;
+let iraqGame = null;
+let iraqActivity = {neighbor:null, terrain:null, terrainGuess:null, rainfall:[], rainfallFeedback:'', waterCard:null, timeline:null, selectedResource:null, waterMatches:[], waterFeedback:''};
 let muted = savedAudio.muted ?? savedXo.muted === true;
 let masterVolume = Math.max(0,Math.min(1,Number(savedAudio.volume ?? .3)));
 const ambience = new AmbienceAudio({muted,volume:masterVolume});
@@ -76,6 +81,8 @@ function controls() {
   const effects=btn('sound',muted?'المؤثرات: مكتومة':'المؤثرات: تعمل',muted?'muted':'sound','quiet',`aria-pressed="${muted}"`);
   const volume=`<label class="volume-control" title="مستوى الصوت"><input type="range" min="0" max="100" step="1" value="${Math.round(masterVolume*100)}" data-audio-volume aria-label="مستوى الصوت"></label>`;
   const full=btn('fullscreen',document.fullscreenElement?'إنهاء الملء':'ملء الشاشة','full','quiet');
+  if(mode==='iraq')return `<footer class="controls iraq-controls"><div class="iraq-page-nav"><button type="button" data-action="iraq-prev" ${iraqPage===0?'disabled':''}>السابق</button><span>${iraqPage+1} / ${iraqPages.length}</span><button type="button" data-action="iraq-next">${iraqPage===iraqPages.length-1?'الختام':'التالي'}</button></div><div class="iraq-global-nav"><button type="button" data-action="iraq-topics">الموضوعات</button><button type="button" data-action="index">الفهرس</button><button type="button" data-action="fullscreen">${document.fullscreenElement?'إنهاء ملء الشاشة':'ملء الشاشة'}</button><button type="button" class="iraq-challenge-launch" data-action="iraq-game-open">تحدّي الفريقين</button></div></footer>`;
+  if(mode==='iraq-challenge')return `<footer class="controls iraq-controls iraq-game-controls"><div><span class="iraq-game-footer-title">تحدّي الفريقين · ${iraqPages[iraqReturnPage]?.title||'وطننا العراق'}</span></div><div class="iraq-global-nav"><button type="button" data-action="iraq-game-exit">خروج إلى الشرح</button><button type="button" data-action="fullscreen">${document.fullscreenElement?'إنهاء ملء الشاشة':'ملء الشاشة'}</button></div></footer>`;
   if(mode!=='journey')return `<footer class="controls floating-controls"><div>${mode==='index'?'':btn('index','فهرس المحتويات','home','primary')}</div><div>${volume}${effects}${full}</div></footer>`;
   return `<footer class="controls floating-controls"><div>${btn('home','الرئيسية','home','quiet')}${btn('back','العودة','arrow','quiet',trip.stage===0?'disabled':'')}${btn('restart','إعادة البداية','reset','quiet')}</div><div class="progress-group"><span>المحطة ${trip.stage+1} من ${stages.length}</span><progress value="${trip.stage+1}" max="${stages.length}" aria-label="تقدّم الرحلة"></progress></div><div>${volume}${effects}${full}${btn('next',trip.stage===stages.length-1?'المحافظة التالية':'التقدّم','arrow','primary next')}</div></footer>`;
 }
@@ -85,8 +92,8 @@ function render(focus=true) {
   if(xoDialog.open) xoDialog.close();
   if(mountainDialog.open) mountainDialog.close();
   drag?.ghost?.remove(); drag=null;
-  const title=mode==='index'?'فهرس مادة الاجتماعيات للصف السادس':mode==='home'?'محافظة دهوك':mode==='explore'?'استكشف دهوك':mode==='iraq'?'وطننا العراق':stages[trip.stage];
-  app.innerHTML=`<div class="app-shell ${mode}">${schoolIdentity()}${mode==='index'?indexTopbar():mode==='home'?homeTopbar():mode==='iraq'?iraqTopbar():`<header class="topbar"><div class="brand">${icon('compass')}<span>رحلة في جغرافية العراق<small>محافظة دهوك · تعلّم، اكتشف، تأمّل</small></span></div>${schoolLockup()}<span class="mode-chip">${mode==='journey'?'مسار الرحلة':'مسار المعلومات'}</span>${mode==='journey'?`<span class="score" id="score">${score()} نقطة</span>`:'<span class="screen-label">دهوك / العراق</span>'}</header>`}${mode==='journey'?rail():''}<main id="screen" tabindex="-1" aria-label="${title}">${mode==='index'?indexPage():mode==='home'?home():mode==='iraq'?iraqUnit():mode==='explore'?explore():journey()}</main>${controls()}</div>`;
+  const title=mode==='index'?'فهرس مادة الاجتماعيات للصف السادس':mode==='home'?'محافظة دهوك':mode==='explore'?'استكشف دهوك':mode==='iraq'?'وطننا العراق':mode==='iraq-challenge'?'تحدّي الفريقين · وطننا العراق':stages[trip.stage];
+  app.innerHTML=`<div class="app-shell ${mode}">${schoolIdentity()}${mode==='index'?indexTopbar():mode==='home'?homeTopbar():mode==='iraq'||mode==='iraq-challenge'?iraqTopbar():`<header class="topbar"><div class="brand">${icon('compass')}<span>رحلة في جغرافية العراق<small>محافظة دهوك · تعلّم، اكتشف، تأمّل</small></span></div>${schoolLockup()}<span class="mode-chip">${mode==='journey'?'مسار الرحلة':'مسار المعلومات'}</span>${mode==='journey'?`<span class="score" id="score">${score()} نقطة</span>`:'<span class="screen-label">دهوك / العراق</span>'}</header>`}${mode==='journey'?rail():''}<main id="screen" tabindex="-1" aria-label="${title}">${mode==='index'?indexPage():mode==='home'?home():mode==='iraq'?iraqUnit():mode==='iraq-challenge'?iraqChallengePage():mode==='explore'?explore():journey()}</main>${controls()}</div>`;
   if(focus)document.querySelector('#screen').focus({preventScroll:true});
 }
 function indexTopbar() {
@@ -100,12 +107,14 @@ function indexPage() {
   return `<section class="curriculum-index"><div class="index-heading"><p class="eyebrow">مادة الاجتماعيات</p><h1>فهرس المحتويات</h1><p class="index-unit-label">الوحدة الأولى</p><h2>محافظات وطننا العراق جغرافياً وتاريخياً</h2><p class="index-intro">اختر وحدة للبدء. المحتوى المتاح الآن هو وطننا العراق ومحافظة دهوك.</p></div><div class="index-grid" aria-label="وحدات الوحدة الأولى">${entries}</div></section>`;
 }
 function iraqTopbar() {
-  return `<header class="iraq-topbar"><div class="iraq-topbar-main"><div class="brand">${icon('compass')}<span>مادة الاجتماعيات<small>الصف السادس الابتدائي · الوحدة الأولى</small></span></div>${schoolLockup()}${btn('index','فهرس المحتويات','home','quiet')}</div><nav class="iraq-nav" aria-label="محطات وطننا العراق"><a class="button quiet" href="#iraq-intro">البداية</a><a class="button quiet" href="#iraq-location">الموقع</a><a class="button quiet" href="#iraq-terrain">التضاريس</a><a class="button quiet" href="#iraq-climate">المناخ</a><a class="button quiet" href="#iraq-water">المياه</a><a class="button quiet" href="#iraq-provinces">المحافظات</a><a class="button quiet" href="#iraq-history">الحضارات</a><a class="button quiet" href="#iraq-unity">وحدة العراق</a></nav></header>`;
+  const topic=iraqPages[mode==='iraq'?iraqPage:iraqReturnPage]?.title||'وطننا العراق';
+  const counter=mode==='iraq'?`<span class="iraq-screen-counter">صفحة ${iraqPage+1} من ${iraqPages.length}</span>`:'<span class="iraq-screen-counter">منافسة اختيارية</span>';
+  return `<header class="iraq-topbar"><div class="iraq-topbar-main"><div class="iraq-brand">${icon('compass')}<span><strong>وطننا العراق</strong><small>${mode==='iraq-challenge'?'تحدّي الفريقين':topic}</small></span></div><span class="iraq-topbar-subject">الاجتماعيات · الصف السادس الابتدائي</span>${counter}<button type="button" class="iraq-top-index" data-action="${mode==='iraq-challenge'?'iraq-game-exit':'index'}">${mode==='iraq-challenge'?'عودة إلى الشرح':'الفهرس'}</button></div></header>`;
 }
 function iraqMapPlaceholder(number,title) {
   return `<figure class="iraq-map-placeholder"><div class="iraq-map-mark" aria-hidden="true">${icon('pin')}</div><figcaption><strong>الخريطة المنهجية رقم (${number})</strong><span>${title}</span><small>مساحة مؤقتة قابلة للاستبدال — لم يُعثر على الخريطة المنهجية في ملفات المشروع.</small></figcaption></figure>`;
 }
-function iraqUnit() {
+function iraqUnitLegacy() {
   const neighbor=iraqLocation.neighbors.find(item=>item.id===iraqActivity.neighbor);
   return `<section class="iraq-unit">
     <section class="iraq-hero" id="iraq-intro"><div class="iraq-hero-copy"><p class="eyebrow">الوحدة الأولى · جغرافياً وتاريخياً</p><h1>وطننا العراق</h1><p class="iraq-subtitle">الموقع، التضاريس، المناخ، المياه، والمحافظات</p><div class="iraq-goals"><h2>أهدافنا في هذه الوحدة</h2><ul>${iraqLearningGoals.map(goal=>`<li>${goal}</li>`).join('')}</ul></div></div><div class="iraq-hero-art" aria-hidden="true">${icon('compass','large-icon')}<span>نتعلّم من أرضنا وتاريخنا</span></div></section>
@@ -117,6 +126,12 @@ function iraqUnit() {
     <section class="iraq-section" id="iraq-history"><div class="iraq-section-heading"><span class="iraq-step">06</span><div><p class="eyebrow">محطات من تاريخنا</p><h2>العراق بلد الحضارات</h2></div>${icon('gallery')}</div><div class="iraq-timeline">${iraqHistory.map((item,index)=>`<article class="iraq-history-card"><span>${String(index+1).padStart(2,'0')}</span><div><h3>${item.title}</h3><p>${item.text}</p></div></article>`).join('')}</div></section>
     <section class="iraq-section iraq-unity-section" id="iraq-unity"><div class="iraq-section-heading"><span class="iraq-step">07</span><div><p class="eyebrow">خاتمة الوحدة</p><h2>وحدة وطننا العراق</h2></div>${icon('compass')}</div><article class="iraq-unity-card"><p>${iraqUnity}</p></article></section>
   </section>`;
+}
+function iraqUnit() {
+  return renderIraqPage(iraqPage,iraqActivity);
+}
+function iraqChallengePage() {
+  return iraqGame?.phase==='play'?renderIraqChallenge(iraqGame):renderIraqChallengeSetup(iraqGame?.scope||'topic',iraqReturnPage);
 }
 function home() {
   const location=topics.find(t=>t.id==='location');
@@ -362,11 +377,57 @@ async function action(el) {
   if(a==='home'){mode='home';render();return;}
   if(a==='index'){mode='index';render();return;}
   if(a==='curriculum-entry'&&mode==='index'&&el.dataset.route==='duhok'){mode='home';render();return;}
-  if(a==='curriculum-entry'&&mode==='index'&&el.dataset.route==='iraq'){iraqActivity={neighbor:null,terrainGuess:null,rainfall:[],rainfallFeedback:'',selectedResource:null,waterMatches:[],waterFeedback:''};mode='iraq';render();return;}
+  if(a==='curriculum-entry'&&mode==='index'&&el.dataset.route==='iraq'){iraqActivity={neighbor:null,terrain:null,terrainGuess:null,rainfall:[],rainfallFeedback:'',waterCard:null,timeline:null,selectedResource:null,waterMatches:[],waterFeedback:''};iraqPage=0;mode='iraq';render();return;}
   if(a==='iraq-index'&&mode==='iraq'){mode='index';render();return;}
+  if(a==='iraq-game-exit'&&mode==='iraq-challenge'){mode='iraq';iraqPage=iraqReturnPage;iraqGame=null;render();return;}
+  if(a==='iraq-game-open'&&mode==='iraq'){
+    iraqReturnPage=iraqPage;
+    const topic=iraqPages[iraqPage]?.topic||'all';
+    iraqGame={phase:'setup',scope:topic==='all'?'all':'topic',topic,questionIndex:0,turn:'X',selected:null,answered:false,wasCorrect:false,scores:{X:0,O:0},names:{X:'الفريق الأول',O:'الفريق الثاني'}};
+    mode='iraq-challenge';render();return;
+  }
+  if(mode==='iraq-challenge'&&a==='iraq-game-scope'){iraqGame.scope=el.dataset.scope;render(false);return;}
+  if(mode==='iraq-challenge'&&a==='iraq-game-start'){
+    const topicQuestions=iraqQuestions.filter(question=>iraqGame.scope==='all'||question.topic===iraqGame.topic);
+    if(!topicQuestions.length){openDetail('لا تتوفر أسئلة لهذا الموضوع','<p>يمكنك اختيار مراجعة الدرس كاملاً، أو العودة إلى الشرح.</p>');return;}
+    iraqGame.names.X=document.querySelector('#iraq-team-x')?.value.trim()||'الفريق الأول';
+    iraqGame.names.O=document.querySelector('#iraq-team-o')?.value.trim()||'الفريق الثاني';
+    iraqGame.phase='play';render();return;
+  }
+  if(mode==='iraq-challenge'&&a==='iraq-game-answer'&&!iraqGame.answered){iraqGame.selected=n;render(false);return;}
+  if(mode==='iraq-challenge'&&a==='iraq-game-submit'&&iraqGame.selected!==null){
+    const question=iraqQuestions.filter(item=>iraqGame.scope==='all'||item.topic===iraqGame.topic)[iraqGame.questionIndex];
+    iraqGame.wasCorrect=iraqGame.selected===question.answer;
+    if(iraqGame.wasCorrect)iraqGame.scores[iraqGame.turn]++;
+    iraqGame.answered=true;render(false);return;
+  }
+  if(mode==='iraq-challenge'&&['iraq-game-next','iraq-game-skip'].includes(a)){
+    iraqGame.questionIndex++;iraqGame.turn=iraqGame.turn==='X'?'O':'X';
+    iraqGame.selected=null;iraqGame.answered=false;iraqGame.wasCorrect=false;render(false);return;
+  }
+  if(mode==='iraq'&&a==='iraq-prev'){iraqPage=Math.max(0,iraqPage-1);render();return;}
+  if(mode==='iraq'&&a==='iraq-next'){iraqPage=Math.min(iraqPages.length-1,iraqPage+1);render();return;}
+  if(mode==='iraq'&&a==='iraq-page'){iraqPage=Math.max(0,Math.min(iraqPages.length-1,Number(el.dataset.page)));closeDetail();render();return;}
+  if(mode==='iraq'&&a==='iraq-topics'){
+    openDetail('موضوعات وطننا العراق',`<nav class="iraq-topic-menu" aria-label="انتقل مباشرة إلى موضوع">${iraqPages.map((page,index)=>btn('iraq-page',page.title,'arrow','',`data-page="${index}"`)).join('')}</nav>`,true);return;
+  }
+  if(mode==='iraq'&&a==='iraq-province-unit'&&el.dataset.route==='duhok'){mode='home';render();return;}
   if(mode==='iraq'&&a==='iraq-neighbor'){iraqActivity.neighbor=id;render(false);return;}
+  if(mode==='iraq'&&a==='iraq-terrain'){iraqActivity.terrain=id;render(false);return;}
   if(mode==='iraq'&&a==='iraq-terrain-guess'){iraqActivity.terrainGuess=id;render(false);return;}
-  if(mode==='iraq'&&a==='iraq-terrain-check'){render(false);return;}
+  if(mode==='iraq'&&a==='iraq-water-card'){iraqActivity.waterCard=id;render(false);return;}
+  if(mode==='iraq'&&a==='iraq-timeline'){iraqActivity.timeline=id;render(false);return;}
+  if(mode==='iraq'&&a==='iraq-zoom'){
+    const image=document.querySelector('.iraq-earth-screenshot img');
+    if(image)openDetail('لقطة Google Earth للعراق',`<figure class="iraq-earth-enlarged"><img src="${image.src}" alt="${escapeHTML(image.alt)}"><figcaption>لقطة شاشة من Google Earth؛ إسناد المصدر ظاهر أسفل الصورة.</figcaption></figure>`,true);
+    return;
+  }
+  if(mode==='iraq'&&a==='iraq-map-zoom'){
+    const image=document.querySelector('.iraq-cover-map img');
+    if(image)openDetail('خريطة محافظات العراق',`<figure class="iraq-map-enlarged"><img src="${image.src}" alt="${escapeHTML(image.alt)}"></figure>`,true);
+    return;
+  }
+  if(mode==='iraq'&&a==='iraq-map-note'){openDetail('حول الرسوم والخرائط',iraqMapNote());return;}
   if(mode==='iraq'&&a==='iraq-rainfall'){
     if(iraqActivity.rainfall.length<iraqRainfallOrder.length&&!iraqActivity.rainfall.includes(id)){
       iraqActivity.rainfall.push(id);iraqActivity.rainfallFeedback='';render(false);
@@ -487,7 +548,11 @@ xoDialog.addEventListener('click',e=>{if(e.target===xoDialog)e.preventDefault();
 mountainDialog.addEventListener('cancel',e=>{e.preventDefault();});
 mountainDialog.addEventListener('click',e=>{if(e.target===mountainDialog)e.preventDefault();});
 document.addEventListener('fullscreenchange',()=>{
-  const label=document.querySelector('[data-action="fullscreen"] span');if(label)label.textContent=document.fullscreenElement?'إنهاء الملء':'ملء الشاشة';
+  document.querySelectorAll('[data-action="fullscreen"]').forEach(button=>{
+    const label=button.querySelector('span');
+    const text=document.fullscreenElement?'إنهاء ملء الشاشة':'ملء الشاشة';
+    if(label)label.textContent=text;else button.textContent=text;
+  });
 });
 document.addEventListener('error',e=>{
   if(e.target.tagName!=='IMG')return;

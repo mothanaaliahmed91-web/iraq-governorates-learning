@@ -24,4 +24,4 @@ Place approved owner-supplied media in `assets/images/`, `assets/videos/`, `asse
 
 ## Current scope
 
-The Iraq overview unit and Duhok lesson are available. Iraq unit content is in `src/data/iraq-data.js`; province index metadata is independent under `src/data/provinces/`. Erbil, Sulaymaniyah, and Ninawa remain placeholders without detailed content. The three curriculum map locations remain explicit placeholders because matching maps were not present among the project assets.
+The Iraq unit and Duhok lesson are available. Iraq is presented as 12 touch-friendly screens with a separate 16-question review challenge. Lesson content and questions are maintained in `src/data/iraq-data.js` and `src/data/iraq-questions.js`; province index metadata is independent under `src/data/provinces/`. Erbil, Sulaymaniyah, and Ninawa remain placeholders without detailed content. The available Iraq governorates map and Google Earth screenshot are labeled with their sources; schematic terrain art is not presented as a precise curriculum map.

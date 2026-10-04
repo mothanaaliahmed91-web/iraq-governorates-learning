@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" role="img">
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#101b3b"/>
+      <stop offset=".55" stop-color="#102e47"/>
+      <stop offset="1" stop-color="#071c31"/>
+    </linearGradient>
+    <linearGradient id="land" x1=".15" y1="0" x2=".85" y2="1">
+      <stop stop-color="#193a58"/>
+      <stop offset=".5" stop-color="#11565d"/>
+      <stop offset="1" stop-color="#203856"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#86fcf1"/>
+      <stop offset=".47" stop-color="#58c9ff"/>
+      <stop offset="1" stop-color="#d5adff"/>
+    </linearGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#b7fff5"/>
+      <stop offset=".5" stop-color="#47e9ed"/>
+      <stop offset="1" stop-color="#70aaff"/>
+    </linearGradient>
+    <radialGradient id="halo">
+      <stop stop-color="#5af1ed" stop-opacity=".3"/>
+      <stop offset="1" stop-color="#5af1ed" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft-glow" x="-.8" y="-.8" width="2.6" height="2.6">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="small-glow" x="-.8" y="-.8" width="2.6" height="2.6">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0v42" fill="none" stroke="#91ddeb" stroke-opacity=".07"/>
+    </pattern>
+    <clipPath id="land-clip">
+      <path d="m351 82 91 30 41 43 40 25-14 50 26 49-15 55 28 48-50 24-18 57-61 16-31 48-66-14-48 30-38-36-57-4-19-51-53-17 17-53-22-42 30-43-5-45 40-34 19-43 55-16 30-45 49-3Z"/>
+    </clipPath>
+  </defs>
+  <rect width="900" height="680" rx="38" fill="url(#night)"/>
+  <rect width="900" height="680" rx="38" fill="url(#grid)"/>
+  <ellipse cx="452" cy="347" rx="330" ry="298" fill="url(#halo)"/>
+
+  <g fill="none" stroke="#84dfee" stroke-opacity=".17">
+    <circle cx="450" cy="340" r="270"/>
+    <circle cx="450" cy="340" r="301" stroke-dasharray="2 12"/>
+    <path d="M450 36v48M450 596v48M146 340h48M706 340h48"/>
+  </g>
+  <g fill="#baf9ff">
+    <circle cx="155" cy="177" r="2"/><circle cx="234" cy="90" r="2"/>
+    <circle cx="681" cy="115" r="2"/><circle cx="760" cy="238" r="2"/>
+    <circle cx="713" cy="499" r="2"/><circle cx="190" cy="513" r="2"/>
+    <circle cx="268" cy="582" r="2"/><circle cx="627" cy="79" r="2"/>
+    <circle cx="112" cy="347" r="2"/><circle cx="783" cy="391" r="2"/>
+  </g>
+
+  <g filter="url(#soft-glow)">
+    <path d="m351 82 91 30 41 43 40 25-14 50 26 49-15 55 28 48-50 24-18 57-61 16-31 48-66-14-48 30-38-36-57-4-19-51-53-17 17-53-22-42 30-43-5-45 40-34 19-43 55-16 30-45 49-3Z"
+      fill="url(#land)" stroke="url(#edge)" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+  <g clip-path="url(#land-clip)">
+    <path d="M185 266q115-83 225-21t225-30" fill="none" stroke="#84d7ba" stroke-opacity=".23" stroke-width="24"/>
+    <path d="M180 394q93-57 193-22t224-23" fill="none" stroke="#eac782" stroke-opacity=".2" stroke-width="31"/>
+    <path d="M230 315q95 5 121 53t112 34q54-2 102 54" fill="none" stroke="url(#river)" stroke-width="8" stroke-linecap="round" filter="url(#small-glow)"/>
+    <path d="M274 233q47 68 53 131t61 52q52-6 125 66" fill="none" stroke="#9afff0" stroke-opacity=".9" stroke-width="4" stroke-linecap="round"/>
+    <path d="M391 171q-22 57-48 95t-9 89" fill="none" stroke="#82dbff" stroke-opacity=".82" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#b1ffff" filter="url(#small-glow)">
+      <circle cx="346" cy="269" r="5"/><circle cx="393" cy="369" r="5"/>
+      <circle cx="492" cy="398" r="5"/><circle cx="555" cy="467" r="5"/>
+    </g>
+    <path d="M287 485q94-33 182-4t179-18" fill="none" stroke="#b2e9aa" stroke-opacity=".46" stroke-width="3" stroke-dasharray="3 11"/>
+  </g>
+
+  <g fill="none" stroke="#74e9eb" stroke-linecap="round">
+    <path d="M222 182h61l22-22h39" stroke-opacity=".55" stroke-width="2"/>
+    <path d="M592 176h51l18 18h39" stroke-opacity=".55" stroke-width="2"/>
+    <path d="M218 475h57l17 17h36" stroke-opacity=".48" stroke-width="2"/>
+    <path d="M592 505h40l19-19h49" stroke-opacity=".48" stroke-width="2"/>
+  </g>
+  <g fill="#f3d88e" filter="url(#small-glow)">
+    <circle cx="222" cy="182" r="4"/><circle cx="699" cy="194" r="4"/>
+    <circle cx="218" cy="475" r="4"/><circle cx="700" cy="486" r="4"/>
+  </g>
+
+  <g transform="translate(450 340)" fill="none" stroke="#f1d58b" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0-14v31M-9-5l9 9 9-9" stroke-width="3"/>
+    <circle r="27" stroke-opacity=".6"/>
+    <circle r="35" stroke-opacity=".19" stroke-dasharray="2 7"/>
+  </g>
+  <g transform="translate(716 119)">
+    <circle r="31" fill="#f2d88b" fill-opacity=".08" stroke="#f2d88b" stroke-opacity=".45"/>
+    <circle r="20" fill="#f2d88b" fill-opacity=".08" stroke="#f2d88b" stroke-opacity=".5"/>
+    <path d="M0-12v24M-12 0h24M-8-8 8 8M8-8-8 8" stroke="#ffdf92" stroke-opacity=".9" stroke-width="2"/>
+  </g>
+  <path d="M106 601h688" stroke="#80dce5" stroke-opacity=".22"/>
+  <g fill="#c5e4e7" font-family="Tahoma,sans-serif" font-size="13" letter-spacing="2">
+    <text x="132" y="628">MESOPOTAMIA</text>
+    <text x="768" y="628" text-anchor="end">NEON STUDY · IRAQ</text>
+  </g>
+</svg>

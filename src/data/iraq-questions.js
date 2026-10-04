@@ -1,0 +1,18 @@
+export const iraqQuestions = [
+  {id:'location-continent',topic:'location',question:'في أي قارة يقع العراق؟',options:['قارة آسيا','قارة أفريقيا','قارة أوروبا'],answer:0},
+  {id:'location-arab-world',topic:'location',question:'في أي قسم من العالم العربي يقع العراق بحسب المادة؟',options:['الجنوبي الغربي','الشمالي الشرقي','الشمالي الغربي'],answer:1},
+  {id:'border-turkey',topic:'location',question:'أي دولة تحد العراق من الشمال؟',options:['إيران','تركيا','الكويت'],answer:1},
+  {id:'border-iran',topic:'location',question:'تقع إيران بالنسبة إلى العراق في جهة…',options:['الغرب','الشرق','الشمال'],answer:1},
+  {id:'terrain-mountains',topic:'terrain',question:'أين تقع المنطقة الجبلية في العراق؟',options:['الوسط والجنوب','الشمال والشمال الشرقي','الغرب والجنوب الغربي'],answer:1},
+  {id:'terrain-alluvial',topic:'terrain',question:'أين يقع السهل الرسوبي؟',options:['الشمال والشمال الشرقي','الوسط والجنوب','الأقسام الغربية فقط'],answer:1},
+  {id:'climate-rain',topic:'climate',question:'في أي فصل يقتصر سقوط الأمطار في العراق؟',options:['الصيف','الشتاء','الربيع'],answer:1},
+  {id:'climate-north',topic:'climate',question:'أين يزداد سقوط الأمطار؟',options:['الأقسام الجنوبية','بالمقدار نفسه في كل الأقسام','الأقسام الشمالية'],answer:2},
+  {id:'water-surface',topic:'water',question:'أي مما يأتي من الموارد المائية السطحية المذكورة؟',options:['الرياح والغيوم','الأنهار وروافدها والبحيرات','التربة والنباتات'],answer:1},
+  {id:'water-rivers',topic:'water',question:'أي مجموعة تضم موارد مائية مهمة وردت في المادة؟',options:['دجلة والخابور والثرثار','الفرات ودوكان والرزازة','دجلة والفرات وشط العرب'],answer:2},
+  {id:'water-benefit',topic:'water',question:'من فوائد السدود والبحيرات المذكورة…',options:['زيادة مساحة السهل الرسوبي','خزن المياه وتوليد الطاقة الكهربائية','تغيير اتجاه سقوط الأمطار'],answer:1},
+  {id:'provinces-count',topic:'provinces',question:'كم محافظة يتكون منها العراق وفق المادة المنهجية؟',options:['عشر محافظات','أربع وعشرون محافظة','ثماني عشرة محافظة'],answer:2},
+  {id:'history-civilizations',topic:'history',question:'أي مجموعة من الحضارات وردت في المادة؟',options:['السومرية والأكدية والبابلية والآشورية','الرومانية واليونانية والفارسية','الفرعونية واليونانية والرومانية'],answer:0},
+  {id:'history-writing',topic:'history',question:'بماذا وصفت المادة مكانة العراق في موضوع الكتابة؟',options:['أول مكان عرف الطباعة الحديثة','من أوائل مواطن الكتابة والتدوين','موطن الكتابة في العصر الحديث فقط'],answer:1},
+  {id:'history-settlement',topic:'history',question:'ما الذي ساعد على الزراعة والاستيطان في العراق؟',options:['قلة المياه وشدة الانحدار','ابتعاد القرى عن الأنهار','وجود دجلة والفرات وروافدهما واستواء الأرض'],answer:2},
+  {id:'unity-trade',topic:'unity',question:'ما الذي ساعد على التبادل التجاري بين المحافظات؟',options:['تنوع التضاريس والمناخ والمنتجات الزراعية','تشابه الموارد في كل المناطق','قلة التنقل بين المحافظات'],answer:0},
+];

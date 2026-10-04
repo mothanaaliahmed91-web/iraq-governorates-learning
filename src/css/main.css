@@ -216,3 +216,326 @@ dialog{position:fixed;inset:0 auto 0 0;margin:0;height:100dvh;max-height:100dvh;
 .iraq-unity-card p{font-size:clamp(1.1rem,1.8vw,1.45rem);line-height:2;color:#e4f4ec}
 @media(max-width:760px){.app-shell.iraq{padding:1rem .8rem .8rem}.iraq-topbar-main{flex-wrap:wrap;gap:.45rem}.iraq-topbar-main>.school-lockup{display:none}.iraq-topbar-main>.button{margin-inline-start:auto}.iraq-nav .button{font-size:.75rem;padding:.35rem .6rem}.iraq-unit{gap:1rem;padding:.25rem 0 1.2rem}.iraq-hero{grid-template-columns:1fr;gap:.8rem}.iraq-hero-art{min-height:7rem;flex-direction:row}.iraq-hero-art .icon{width:3rem;height:3rem}.iraq-goals ul{grid-template-columns:1fr}.iraq-location-grid,.iraq-climate-layout,.iraq-water-layout{grid-template-columns:1fr}.iraq-location-copy{align-items:flex-start}.iraq-neighbor-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.iraq-terrain-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.iraq-terrain-card{min-height:9rem}.iraq-timeline{grid-template-columns:1fr}.iraq-province-count{width:3.8rem;height:3.8rem}.iraq-match-grid{gap:.6rem}.iraq-match-option{font-size:.78rem;padding:.45rem}.iraq-map-placeholder{min-height:7rem;padding:.75rem}.iraq-map-placeholder figcaption span{font-size:.95rem}}
 @media(max-width:420px){.iraq-section-heading{gap:.55rem}.iraq-neighbor{flex-direction:column}.iraq-match-grid{grid-template-columns:1fr}.iraq-location-copy{flex-direction:column}.iraq-map-placeholder figcaption small{font-size:.7rem}}
+
+/* Iraq lesson: one complete classroom screen per idea. */
+.app-shell.iraq,.app-shell.iraq-challenge{height:100dvh;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:.4rem;padding:.55rem 1.5rem .45rem;overflow:hidden;background:radial-gradient(ellipse at 85% 5%,#103b4c99,transparent 43%),radial-gradient(ellipse at 5% 95%,#25345b70,transparent 48%),var(--bg)}
+.app-shell.iraq #screen,.app-shell.iraq-challenge #screen{min-height:0;overflow:hidden;display:flex;justify-content:center;align-items:stretch;padding:.15rem 0}
+.iraq-topbar{min-height:3.8rem;border-bottom:1px solid #315363;padding:.1rem .3rem .45rem}
+.iraq-topbar-main{display:flex;align-items:center;gap:1rem;min-height:3.45rem}
+.iraq-brand{display:flex;align-items:center;gap:.65rem;min-width:0}
+.iraq-brand>.icon{width:2.8rem;height:2.8rem;padding:.35rem;border:1px solid #426b74;border-radius:50%;background:#102e3e}
+.iraq-brand>span{display:grid;gap:.12rem}
+.iraq-brand strong{font-size:1.16rem;color:var(--gold)}
+.iraq-brand small{font-size:.77rem;color:var(--muted)}
+.iraq-topbar-subject{margin-inline-start:auto;color:#c1d6d9;font-size:.9rem}
+.iraq-screen-counter{white-space:nowrap;color:var(--cyan);font-size:.9rem;font-weight:700}
+.iraq-top-index,.iraq-global-nav button,.iraq-page-nav button,.iraq-primary-button,.iraq-secondary-button,.iraq-start-button{min-width:var(--touch);min-height:var(--touch);border:1px solid #3a6570;border-radius:.9rem;padding:.55rem 1rem;background:#102f40;color:var(--text);font:inherit;font-weight:700;cursor:pointer;touch-action:manipulation}
+.iraq-top-index{color:var(--gold);white-space:nowrap}
+.iraq-page{position:relative;width:min(100%,100rem);height:100%;min-height:0;margin:auto;padding:.5rem .65rem;display:flex;flex-direction:column;justify-content:center;gap:.8rem;isolation:isolate;overflow:hidden;animation:reveal .2s ease-out}
+.iraq-page:before{position:absolute;inset:8% 3% auto auto;width:13rem;height:13rem;border:1px solid #78dfe414;border-radius:50%;box-shadow:0 0 0 2rem #78dfe408,0 0 0 4rem #78dfe405;content:"";z-index:-1;pointer-events:none}
+.iraq-page-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex:none}
+.iraq-page-heading>div:first-child{max-width:75rem}
+.iraq-page-heading h1,.iraq-cover h1,.iraq-game-setup h1,.iraq-game-result h1{font-size:clamp(2.1rem,3.1vw,3.7rem);line-height:1.25}
+.iraq-page-heading .eyebrow,.iraq-cover .eyebrow{margin-bottom:.25rem}
+.iraq-page-heading p:not(.eyebrow){max-width:78rem;margin-top:.4rem;color:#ccdcdf;font-size:clamp(1rem,1.22vw,1.3rem);line-height:1.65}
+.iraq-cover{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:2rem}
+.iraq-cover-copy{display:flex;flex-direction:column;align-items:flex-start;gap:.8rem}
+.iraq-cover h1{font-size:clamp(3rem,5.2vw,6rem);color:var(--gold);text-shadow:0 0 2.5rem #f0cf8735}
+.iraq-cover-lead{max-width:45rem;color:#d9e9e8;font-size:clamp(1.25rem,1.7vw,1.8rem);line-height:1.6}
+.iraq-goals{width:100%;max-width:54rem;margin:0}
+.iraq-goals li{padding:.17rem .1rem .17rem 1rem;font-size:clamp(.95rem,1.05vw,1.15rem);line-height:1.5}
+.iraq-start-button{display:flex;align-items:center;gap:.9rem;margin-top:.25rem;padding:.7rem 1.3rem;border-color:#69dfc1;background:linear-gradient(115deg,#63d8c4,#79e7e7);color:#052832;font-size:1.2rem;box-shadow:0 .5rem 2rem #32d8bf2a}
+.iraq-start-button .icon{filter:brightness(.35)}
+.iraq-start-button b{font-size:1.5rem}
+.iraq-cover-scene{position:relative;align-self:center;width:100%;max-height:min(65vh,39rem);filter:drop-shadow(0 1rem 2rem #030b1590)}
+.iraq-cover-map{display:block;width:100%;min-height:0;padding:0;border:0;border-radius:2rem;background:transparent}
+.iraq-cover-map img{width:100%;height:auto;max-height:min(65vh,39rem);object-fit:contain;border:1px solid #72d9d74a;border-radius:2rem}
+.iraq-cover-art-label{position:absolute;inset:auto auto .8rem .8rem;display:flex;align-items:center;gap:.45rem;max-width:calc(100% - 1.6rem);padding:.55rem .8rem;border:1px solid #63dbe36b;border-radius:.8rem;background:#071a2deF;color:#e2edda;font-size:.8rem;line-height:1.45;pointer-events:none}
+.iraq-cover-art-label .icon{width:1.2rem;height:1.2rem;flex:none}
+.iraq-location-scene{min-height:0;flex:1;display:grid;grid-template-columns:1.1fr .9fr;gap:1rem;align-items:stretch}
+.iraq-earth-card{min-width:0;min-height:0;display:grid;grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;align-items:center;gap:clamp(.7rem,1.2vw,1.2rem);padding:clamp(.8rem,1.4vw,1.4rem);border:1px solid #39717a;border-radius:1.5rem;background:radial-gradient(ellipse at 15% 45%,#23777a40,transparent 58%),linear-gradient(145deg,#102f45,#0a1d30 75%);overflow:hidden}
+.iraq-earth-screenshot{position:relative;min-width:0;min-height:0;width:100%;aspect-ratio:16/9;max-height:min(43vh,30rem);display:grid;place-items:center;overflow:hidden;padding:0;border:1px solid #5c9291;border-radius:1.1rem;background:#081623;cursor:zoom-in}
+.iraq-earth-screenshot img{width:100%;height:100%;max-height:none;object-fit:contain}
+.iraq-earth-screenshot>span{position:absolute;inset:auto .7rem .7rem auto;min-height:3.2rem;display:flex;align-items:center;gap:.5rem;padding:.45rem .8rem;border:1px solid #b3a16f;border-radius:.75rem;background:#081d2beF;color:#f4e4b8;font-size:.82rem}
+.iraq-earth-screenshot>span .icon{width:1.25rem;height:1.25rem}
+.iraq-earth-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.7rem}
+.iraq-earth-copy .eyebrow{margin:0}
+.iraq-earth-copy h2{font-size:clamp(1.4rem,2vw,2.1rem);line-height:1.45;color:var(--gold)}
+.iraq-earth-copy>p:not(.eyebrow){color:#d2e2e2;font-size:clamp(1rem,1.2vw,1.25rem);line-height:1.75}
+.iraq-earth-copy small{font-size:.82rem;line-height:1.6}
+.iraq-earth-link{width:100%;min-height:var(--touch);display:flex;align-items:center;justify-content:center;gap:.65rem;padding:.65rem .8rem;border:1px solid #71d9c4;border-radius:.9rem;background:linear-gradient(110deg,#55cdb8,#75dfe0);color:#082933;text-decoration:none;font-weight:800;text-align:center}
+.iraq-earth-link .icon{filter:brightness(.3)}
+.iraq-earth-link b{font-size:1.25rem}
+.iraq-earth-enlarged{margin:.5rem 0 0;padding:.5rem;border:1px solid #426575;border-radius:1rem;background:#081725}
+.iraq-earth-enlarged img{width:100%;max-height:72vh;object-fit:contain}
+.iraq-earth-enlarged figcaption{padding:.4rem .6rem;color:#d8c995;font-size:.82rem}
+dialog.wide:has(.iraq-earth-enlarged){width:min(94vw,90rem)}
+.iraq-map-enlarged{margin:.5rem 0 0;padding:.5rem;border:1px solid #426575;border-radius:1rem;background:#081725}
+.iraq-map-enlarged img{width:100%;max-height:78vh;object-fit:contain}
+dialog.wide:has(.iraq-map-enlarged){width:min(94vw,70rem)}
+.iraq-location-note{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1rem;padding:clamp(1.4rem,3vw,3rem);border:1px solid #786847;border-radius:1.5rem;background:linear-gradient(145deg,#312f31,#152a3a 76%);overflow:hidden}
+.iraq-location-note:after{position:absolute;inset:auto -2rem -5rem auto;width:13rem;height:13rem;border:1px solid #efcc7150;border-radius:50%;content:"";box-shadow:0 0 0 1.5rem #efcc7111,0 0 0 3rem #efcc7108}
+.iraq-fact-icon{width:4.7rem;height:4.7rem;display:grid;place-items:center;border:1px solid #9b824e;border-radius:1.3rem;background:#443b2a}
+.iraq-fact-icon .icon{width:2.7rem;height:2.7rem}
+.iraq-location-note p{font-size:clamp(1.35rem,2vw,2rem);line-height:1.8}
+.iraq-fact-tag{padding:.45rem .8rem;border:1px solid #42766d;border-radius:2rem;color:var(--green);font-size:.9rem}
+.iraq-borders-layout{min-height:0;flex:1;display:grid;grid-template-columns:1.3fr .7fr;gap:1rem;align-items:stretch}
+.iraq-country-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}
+.iraq-touch-card{position:relative;min-width:0;min-height:var(--touch);border:1px solid #345565;border-radius:1.2rem;background:linear-gradient(145deg,#102d3d,#101f32);color:var(--text);font:inherit;text-align:start;cursor:pointer;touch-action:manipulation;transition:transform .16s,border-color .16s,background .16s}
+.iraq-touch-card.is-selected{border-color:var(--gold);background:linear-gradient(135deg,#453d2d,#173645);box-shadow:0 0 1.2rem #f0cf8722}
+.iraq-country-grid .iraq-touch-card{grid-row:span 3;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.2rem .8rem;padding:1rem}
+.iraq-country-grid .iraq-touch-card strong{font-size:clamp(1.15rem,1.6vw,1.7rem)}
+.iraq-country-arrow{grid-column:1;color:var(--cyan);font-size:1.8rem}
+.iraq-country-grid small{grid-column:2;font-size:.78rem}
+.iraq-compass{width:8rem;height:8rem;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;border:1px solid #4a6976;border-radius:50%;background:radial-gradient(circle,#173f4a,#101e31);color:var(--gold);font-size:.8rem;text-align:center}
+.iraq-compass b{color:var(--cyan);font-size:1.4rem;line-height:1}
+.iraq-neighbor-reveal{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.7rem;padding:clamp(1.2rem,2.2vw,2.3rem);border:1px solid #438375;border-radius:1.3rem;background:radial-gradient(ellipse at 90% 5%,#36bda727,transparent 55%),#0d2939}
+.iraq-reveal-glow .icon{width:3rem;height:3rem;filter:drop-shadow(0 0 1rem #7ae5e877)}
+.iraq-neighbor-reveal h2{font-size:clamp(1.6rem,2vw,2.5rem);color:var(--gold)}
+.iraq-neighbor-reveal>p:not(.eyebrow){font-size:clamp(1.15rem,1.5vw,1.65rem);line-height:1.7}
+.iraq-map-caveat{margin-top:.5rem;color:var(--muted);font-size:.83rem;line-height:1.55}
+.iraq-map-notice{display:flex;align-items:center;gap:.8rem;min-height:4.2rem;padding:.55rem .85rem;border:1px dashed #77734f;border-radius:1rem;background:#1b2932;color:var(--text);text-align:start;cursor:pointer}
+.iraq-map-notice>span{width:2.6rem;height:2.6rem;flex:none;display:grid;place-items:center;border-radius:50%;background:#413b29}
+.iraq-map-notice .icon{width:1.5rem;height:1.5rem}
+.iraq-map-notice strong{color:var(--gold);font-size:.95rem}
+.iraq-map-notice small{margin-inline-start:auto;max-width:31rem;font-size:.78rem}
+.iraq-terrain-deck{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem;min-height:0;flex:1}
+.iraq-terrain-deck .iraq-touch-card{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.45rem;padding:.8rem 1rem}
+.iraq-terrain-deck svg{width:100%;height:clamp(5rem,12vh,8rem);align-self:center}
+.iraq-terrain-deck strong{font-size:clamp(1rem,1.35vw,1.4rem)}
+.iraq-terrain-number{position:absolute;top:.55rem;inset-inline-end:.65rem;color:var(--gold);font-size:.85rem}
+.iraq-terrain-description{color:#bfd3d4;font-size:clamp(.88rem,1vw,1.05rem);line-height:1.45}
+.iraq-open-question{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.65rem .8rem;border:1px solid #585345;border-radius:1rem;background:#16232e}
+.iraq-open-question>div:first-child{min-width:15rem}
+.iraq-open-question strong{color:var(--gold)}
+.iraq-open-question p{font-weight:700}
+.iraq-open-question small{font-size:.76rem}
+.iraq-open-question>div:last-child{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:.4rem}
+.iraq-open-question button{min-height:var(--touch);padding:.4rem .7rem;border:1px solid #3c5b67;border-radius:.7rem;background:#102b3b;color:var(--text);font:inherit;font-size:.82rem}
+.iraq-open-question button.is-selected{border-color:var(--gold);background:#3b3428}
+.iraq-open-question [role=status]{flex-basis:100%;color:var(--gold);font-size:.78rem}
+.iraq-weather-icons{display:flex;gap:.7rem;flex:none;font-size:2.7rem}
+.iraq-weather-icons .rain,.iraq-weather-icons .snow{color:#86e3e9;animation:weatherFloat 3s ease-in-out infinite}
+.iraq-weather-icons .sun{color:var(--gold);animation:sunPulse 4s ease-in-out infinite}
+.iraq-weather-icons .snow{animation-delay:.5s}
+.iraq-climate-regions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;min-height:0;flex:1}
+.iraq-climate-region{position:relative;display:flex;flex-direction:column;gap:.6rem;padding:clamp(1rem,1.8vw,1.7rem);border:1px solid #385b72;border-radius:1.4rem;background:linear-gradient(155deg,#163649,#0d2235);overflow:hidden}
+.iraq-climate-region.north{border-color:#52878b;background:linear-gradient(155deg,#17434c,#13263a)}
+.iraq-climate-region.south{background:linear-gradient(155deg,#584431,#18273a)}
+.iraq-weather-symbol{font-size:3.5rem;line-height:1;color:var(--cyan)}
+.iraq-climate-region.center .iraq-weather-symbol,.iraq-climate-region.south .iraq-weather-symbol{color:var(--gold)}
+.iraq-climate-region h2{font-size:clamp(1.25rem,1.75vw,1.8rem);color:var(--gold)}
+.iraq-climate-region ul{display:grid;gap:.55rem;margin:0;padding-inline-start:1.2rem;color:#e1e8e6}
+.iraq-climate-region li{font-size:clamp(.95rem,1.1vw,1.15rem);line-height:1.65}
+.iraq-rain-dots{display:flex;gap:.5rem;margin-top:auto;min-height:1.2rem}
+.iraq-rain-dots i{width:.45rem;height:.9rem;border-radius:50%;background:#6ddbe8;opacity:.8;animation:rainDrop 2.2s ease-in-out infinite}
+.iraq-rain-dots i:nth-child(2){animation-delay:.3s}.iraq-rain-dots i:nth-child(3){animation-delay:.6s}.iraq-rain-dots i:nth-child(4){animation-delay:.9s}
+.iraq-climate-region.center .iraq-rain-dots i:nth-child(n+3),.iraq-climate-region.south .iraq-rain-dots i:nth-child(n+2){opacity:.22}
+.iraq-climate-note{display:flex;align-items:center;gap:.65rem;flex:none;padding:.6rem .85rem;border-inline-start:4px solid #68c9d1;border-radius:.5rem;background:#123241;color:#d6e6e5;font-size:.93rem}
+.iraq-climate-note span{color:var(--cyan);font-size:1.5rem}
+.iraq-rain-scene{flex:none;color:#9de6e9;font-size:3.3rem;line-height:1}
+.iraq-rain-scene span{display:block;font-size:1.4rem;color:#7bd7e1}
+.iraq-rain-activity{width:min(100%,72rem);min-height:0;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:center;padding:clamp(1.1rem,2.5vw,2.4rem);border:1px solid #3d7380;border-radius:1.5rem;background:radial-gradient(ellipse at 80% 0,#2b777340,transparent 60%),#0f293b}
+.iraq-rain-order{min-height:10rem;display:grid;align-content:center;gap:.55rem;padding:1rem;border:1px dashed #476a75;border-radius:1rem}
+.iraq-rain-order>div{display:flex;align-items:center;gap:.7rem;font-size:1.15rem}
+.iraq-rain-order b{width:2rem;height:2rem;display:grid;place-items:center;border-radius:50%;background:#3d4538;color:var(--gold)}
+.iraq-empty-order{color:var(--muted);font-size:1.1rem}
+.iraq-rain-options{display:grid;gap:.55rem}
+.iraq-rain-options button{min-height:var(--touch);border:1px solid #426373;border-radius:.8rem;background:#112f40;color:var(--text);font:inherit;font-weight:700}
+.iraq-rain-options button:disabled{border-color:#467466;background:#173b3b;color:#b7e8d6;opacity:.8}
+.iraq-activity-feedback{grid-column:1/-1;min-height:1.8rem;color:var(--green);font-size:1rem}
+.iraq-activity-actions{grid-column:1/-1;display:flex;gap:.7rem;justify-content:flex-start}
+.iraq-primary-button{background:var(--cyan);color:#072a32;border-color:var(--cyan)}
+.iraq-primary-button:disabled{opacity:.45}
+.iraq-secondary-button{background:#122e3e}
+.iraq-water-art{width:min(23vw,18rem);flex:none}
+.iraq-water-art svg{width:100%}
+.iraq-water-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;min-height:0;flex:1}
+.iraq-water-cards .iraq-touch-card{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr;align-content:center;gap:.35rem .8rem;padding:.8rem 1rem}
+.iraq-water-symbol{grid-row:span 2;width:3rem;height:3rem;display:grid;place-items:center;border:1px solid #3b7b82;border-radius:50%;background:#123946;color:var(--cyan);font-size:1.8rem}
+.iraq-water-cards strong{font-size:clamp(1rem,1.2vw,1.28rem);color:#e7eeee}
+.iraq-water-cards .iraq-touch-card>span:last-child{font-size:clamp(.82rem,1vw,1.05rem);line-height:1.5;color:#bcd1d4}
+.iraq-map-disclaimer{grid-column:1/-1;padding:.45rem .8rem;border-inline-start:3px solid var(--gold);color:#d4cfb6;font-size:.85rem}
+.iraq-match-progress,.iraq-province-total{display:flex;align-items:center;justify-content:center;gap:.45rem;min-width:5.8rem;min-height:5rem;border:1px solid #7b694a;border-radius:1.2rem;background:#292b30;color:var(--gold);font-size:1.3rem;font-weight:700}
+.iraq-match-board{display:grid;grid-template-columns:1fr 1fr;gap:1rem;min-height:0;flex:1}
+.iraq-match-board>div{display:grid;grid-template-rows:auto repeat(3,minmax(0,1fr));gap:.6rem;padding:1rem;border:1px solid #315364;border-radius:1.2rem;background:#0d2738}
+.iraq-match-board h2{font-size:1.15rem;color:var(--cyan)}
+.iraq-match-option{min-height:var(--touch);padding:.6rem 1rem;border:1px solid #3a5c6a;border-radius:.8rem;background:#112f40;color:var(--text);font:inherit;font-weight:700;text-align:start}
+.iraq-match-option.is-selected{border-color:var(--gold);background:#403929}
+.iraq-match-option.is-matched{border-color:#63d7a5;background:#174338;color:#c4f3df}
+.iraq-province-total{flex-direction:column;width:7rem;height:7rem;border-radius:50%;font-size:.85rem}
+.iraq-province-total strong{font-size:2.8rem;line-height:1;color:var(--gold)}
+.iraq-province-scene{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:2rem;padding:clamp(1.2rem,3vw,3rem);border:1px solid #48716c;border-radius:1.5rem;background:radial-gradient(ellipse at 12% 50%,#337b6930,transparent 52%),#102b3b}
+.iraq-province-tiles{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:.6rem}
+.iraq-province-tiles span{aspect-ratio:1;min-height:3rem;display:grid;place-items:center;border:1px solid #4d8374;border-radius:.8rem;background:linear-gradient(145deg,#1a514a,#17384a);color:#f4d98e;font-size:1.2rem;font-weight:700}
+.iraq-province-scene p{color:#d0dddd;font-size:clamp(1.1rem,1.6vw,1.7rem);line-height:1.8}
+.iraq-province-status{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem}
+.iraq-province-status button{min-width:0;min-height:var(--touch);display:grid;align-content:center;gap:.15rem;padding:.55rem .75rem;border:1px solid #385563;border-radius:.8rem;background:#102838;color:var(--text);font:inherit;text-align:start}
+.iraq-province-status button:not(:disabled){border-color:#4b9479;background:linear-gradient(120deg,#17483e,#123342);cursor:pointer}
+.iraq-province-status button:disabled{opacity:.8}
+.iraq-unit-status{color:var(--green);font-size:.75rem}
+.iraq-province-status button:disabled .iraq-unit-status{color:var(--gold)}
+.iraq-province-status strong{font-size:.95rem}
+.iraq-province-status small{font-size:.72rem;line-height:1.4}
+.iraq-timeline-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;min-height:0;flex:1}
+.iraq-timeline-cards .iraq-touch-card{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr;align-content:center;gap:.2rem .8rem;padding:.8rem 1rem}
+.iraq-timeline-node{grid-row:span 2;width:2.7rem;height:2.7rem;display:grid;place-items:center;border:1px solid #8c78ac;border-radius:50%;background:#302a45;color:#e5d3ff;font-weight:700}
+.iraq-timeline-cards strong{font-size:1.06rem;color:#e8d9f5}
+.iraq-timeline-cards .iraq-touch-card>span:last-child{color:#c5d2d8;font-size:.92rem;line-height:1.5}
+.iraq-timeline-line{width:7rem;height:2px;flex:none;background:linear-gradient(90deg,#8b7aaa,#d2b972)}
+.iraq-unity-page{align-items:stretch}
+.iraq-unity-page>.iraq-page-heading{align-items:center}
+.iraq-unity-star{width:3.5rem;height:3.5rem}
+.iraq-unity-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1.3fr;align-items:center;gap:1rem}
+.iraq-unity-flow>b{color:var(--gold);font-size:2rem}
+.iraq-unity-pillar{min-height:9rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;padding:1rem;border:1px solid #498576;border-radius:1.2rem;background:linear-gradient(145deg,#16443f,#122d3b);text-align:center}
+.iraq-unity-pillar>span{width:2.2rem;height:2.2rem;display:grid;place-items:center;border:1px solid #b29a5e;border-radius:50%;color:var(--gold)}
+.iraq-unity-pillar strong{font-size:clamp(1rem,1.35vw,1.45rem);line-height:1.6}
+.iraq-unity-page blockquote{margin:0;padding:clamp(1.1rem,2.3vw,2.2rem);border-inline-start:5px solid var(--gold);border-radius:.8rem;background:linear-gradient(110deg,#17443d,#172d3d);color:#e7f3e9;font-size:clamp(1.15rem,1.8vw,1.85rem);line-height:1.9}
+.iraq-unity-seal{display:flex;align-items:center;justify-content:center;gap:.8rem;color:var(--gold);font-size:1.15rem;font-weight:700;text-align:center}
+.iraq-unity-seal .icon{width:2.4rem;height:2.4rem}
+.iraq-unity-seal small{color:var(--muted);font-size:.8rem}
+.iraq-controls{min-height:4rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.4rem .1rem 0;border-top:1px solid #315363;background:transparent}
+.iraq-page-nav,.iraq-global-nav{display:flex;align-items:center;gap:.5rem}
+.iraq-page-nav span{min-width:4.5rem;text-align:center;color:var(--muted);font-variant-numeric:tabular-nums}
+.iraq-global-nav button{font-size:.88rem}
+.iraq-global-nav .iraq-challenge-launch{border-color:#a78d52;background:linear-gradient(110deg,#51452d,#342f2d);color:#f5d88d}
+.iraq-controls button:disabled{opacity:.4}
+.iraq-game-footer-title{color:var(--gold);font-weight:700}
+.iraq-topic-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;max-height:65vh;overflow:auto;padding:.5rem}
+.iraq-topic-menu .button{min-height:var(--touch);justify-content:flex-start}
+.iraq-enlarged-map{max-height:70vh;padding:1rem;border:1px solid #426575;border-radius:1rem;background:#0c2436}
+.iraq-enlarged-map svg{width:100%;max-height:65vh}
+.iraq-game-setup,.iraq-game-result{align-items:center;text-align:center}
+.iraq-game-setup>p:not(.eyebrow),.iraq-game-result>p{max-width:55rem;color:#d0dfe0;font-size:1.1rem;line-height:1.7}
+.iraq-game-emblem{width:5rem;height:5rem;display:grid;place-items:center;border:1px solid #9b814d;border-radius:1.4rem;background:#342f28}
+.iraq-game-emblem .icon{width:3rem;height:3rem}
+.iraq-game-scope{width:min(100%,62rem);display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.iraq-game-scope button{min-height:5.5rem;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.25rem;padding:1rem;border:1px solid #3a5e6e;border-radius:1rem;background:#102e40;color:var(--text);font:inherit;font-weight:700;text-align:start}
+.iraq-game-scope button.is-selected{border-color:var(--gold);background:#3b352b;color:#ffedbf}
+.iraq-game-scope small{font-weight:400}
+.iraq-team-names{width:min(100%,62rem);display:grid;grid-template-columns:1fr 1fr;gap:.8rem;text-align:start}
+.iraq-team-names label{display:grid;gap:.35rem;color:var(--cyan)}
+.iraq-team-names input{min-height:var(--touch);width:100%;padding:.6rem .8rem;border:1px solid #426373;border-radius:.75rem;background:#0d2433;color:var(--text);font:inherit}
+.iraq-game-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem}
+.iraq-game-scoreboard{display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+.iraq-game-scoreboard>div{min-width:10rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.55rem .85rem;border:1px solid #385a69;border-radius:.85rem;background:#102c3d}
+.iraq-game-scoreboard>div.is-turn{border-color:var(--gold);background:#352f28}
+.iraq-game-scoreboard strong{color:var(--gold);font-size:1.4rem}
+.iraq-game-scoreboard>p{color:var(--muted);font-size:.9rem}
+.iraq-question-card{width:min(100%,72rem);margin:auto;padding:clamp(1rem,2.2vw,2rem);border:1px solid #3a6775;border-radius:1.4rem;background:radial-gradient(ellipse at 90% 0,#2872763b,transparent 55%),#0e293b}
+.iraq-question-card>.eyebrow{color:var(--gold)}
+.iraq-question-card h1{font-size:clamp(1.65rem,2.7vw,3rem);line-height:1.45}
+.iraq-answer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;margin-top:1rem}
+.iraq-answer-grid button{min-height:var(--touch);padding:.7rem;border:1px solid #3e6170;border-radius:.9rem;background:#122f40;color:var(--text);font:inherit;font-weight:700}
+.iraq-answer-grid button.is-selected{border-color:var(--gold);background:#403929}
+.iraq-answer-grid button.is-correct{border-color:#55c99a;background:#174437}
+.iraq-answer-feedback{margin-top:.8rem;color:var(--green);font-size:1rem}
+.iraq-final-scores{display:flex;gap:1rem}
+.iraq-final-scores p{min-width:12rem;display:grid;gap:.5rem;padding:1rem;border:1px solid #526b6b;border-radius:1rem;background:#102e3c}
+.iraq-final-scores strong{color:var(--gold);font-size:2rem}
+.iraq-secondary-button,.iraq-primary-button{font-size:1rem}
+.iraq-game-controls .iraq-global-nav button{border-color:#806d4b}
+dialog.wide:has(.iraq-enlarged-map){width:min(90vw,70rem)}
+@keyframes weatherFloat{50%{transform:translateY(-.35rem)}}@keyframes sunPulse{50%{filter:drop-shadow(0 0 .7rem #f0cf8790);transform:scale(1.04)}}@keyframes rainDrop{50%{transform:translateY(.22rem);opacity:.45}}
+@media(max-width:900px){
+  .app-shell.iraq,.app-shell.iraq-challenge{padding-inline:.8rem}
+  .iraq-topbar-subject{display:none}
+  .iraq-country-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .iraq-country-grid .iraq-touch-card{grid-row:span 3}
+  .iraq-terrain-deck strong{font-size:1rem}
+}
+@media(max-width:760px){
+  .app-shell.iraq,.app-shell.iraq-challenge{height:auto;min-height:100dvh;grid-template-rows:auto minmax(0,1fr) auto;overflow:visible;padding:.55rem .65rem .7rem}
+  .app-shell.iraq .school-watermark,.app-shell.iraq-challenge .school-watermark{display:none}
+  .app-shell.iraq #screen,.app-shell.iraq-challenge #screen{min-height:60vh;overflow:visible}
+  .iraq-topbar-main{flex-wrap:wrap;gap:.45rem}
+  .iraq-topbar{padding-bottom:.35rem}
+  .iraq-brand>.icon{width:2.4rem;height:2.4rem}
+  .iraq-brand strong{font-size:1rem}
+  .iraq-brand small{font-size:.72rem}
+  .iraq-screen-counter{margin-inline-start:auto;font-size:.78rem}
+  .iraq-top-index{min-height:3.5rem;min-width:3.5rem;margin-inline-start:auto;font-size:.85rem}
+  .iraq-page{height:auto;min-height:calc(100dvh - 12rem);padding:1rem .15rem;gap:1rem;overflow:visible}
+  .iraq-page-heading{align-items:flex-start}
+  .iraq-page-heading h1,.iraq-game-setup h1,.iraq-game-result h1{font-size:clamp(1.8rem,7vw,2.8rem)}
+  .iraq-page-heading p:not(.eyebrow){font-size:1rem}
+  .iraq-cover{display:flex;flex-direction:column-reverse;align-items:stretch;gap:1rem}
+  .iraq-cover h1{font-size:clamp(2.8rem,12vw,4.4rem)}
+  .iraq-cover-scene{max-height:none}
+  .iraq-cover-map img{max-height:40vh}
+  .iraq-cover-art-label{inset:auto .5rem .5rem .5rem;max-width:none;font-size:.72rem}
+  .iraq-goals ul{grid-template-columns:1fr}
+  .iraq-cover-lead{font-size:1.15rem}
+  .iraq-location-scene,.iraq-borders-layout,.iraq-province-scene{grid-template-columns:1fr}
+  .iraq-province-status{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .iraq-earth-card{grid-template-columns:1fr}
+  .iraq-earth-screenshot{min-height:13rem;max-height:none;aspect-ratio:16/9}
+  .iraq-earth-screenshot>span{inset:auto .4rem .4rem auto;min-height:2.6rem;padding:.3rem .5rem;font-size:.72rem}
+  .iraq-location-note{min-height:14rem}
+  .iraq-compass{width:5.8rem;height:5.8rem;font-size:.68rem}
+  .iraq-country-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem}
+  .iraq-country-grid .iraq-touch-card{padding:.7rem}
+  .iraq-country-grid .iraq-touch-card strong{font-size:1rem}
+  .iraq-country-grid small{font-size:.65rem}
+  .iraq-map-notice{align-items:flex-start;flex-wrap:wrap}
+  .iraq-map-notice small{margin-inline-start:3.3rem;max-width:none}
+  .iraq-terrain-deck,.iraq-water-cards{grid-template-columns:repeat(2,minmax(0,1fr));flex:none}
+  .iraq-terrain-deck .iraq-touch-card{min-height:12rem}
+  .iraq-terrain-deck svg{height:6rem}
+  .iraq-open-question{align-items:flex-start;flex-direction:column}
+  .iraq-open-question>div:first-child{min-width:0}
+  .iraq-open-question>div:last-child{justify-content:flex-start}
+  .iraq-open-question button{font-size:.75rem}
+  .iraq-weather-icons{font-size:1.6rem;gap:.25rem}
+  .iraq-climate-regions{grid-template-columns:1fr;flex:none}
+  .iraq-climate-region{min-height:13rem}
+  .iraq-weather-symbol{font-size:2.4rem}
+  .iraq-climate-region li{font-size:1rem}
+  .iraq-climate-note{align-items:flex-start;font-size:.86rem}
+  .iraq-rain-activity{grid-template-columns:1fr}
+  .iraq-activity-feedback,.iraq-activity-actions{grid-column:auto}
+  .iraq-water-art{width:7rem}
+  .iraq-water-cards .iraq-touch-card{min-height:11rem;padding:.65rem}
+  .iraq-water-symbol{width:2.2rem;height:2.2rem;font-size:1.3rem}
+  .iraq-water-cards .iraq-touch-card>span:last-child{font-size:.82rem}
+  .iraq-match-board{grid-template-columns:1fr}
+  .iraq-match-board>div{grid-template-rows:auto repeat(3,minmax(4rem,auto))}
+  .iraq-province-scene{gap:1rem;padding:1rem}
+  .iraq-province-tiles{grid-template-columns:repeat(6,minmax(0,1fr));gap:.35rem}
+  .iraq-province-tiles span{min-height:2.4rem;font-size:.9rem}
+  .iraq-province-scene p{font-size:1.05rem}
+  .iraq-timeline-cards{grid-template-columns:1fr;flex:none}
+  .iraq-timeline-cards .iraq-touch-card{min-height:7rem}
+  .iraq-unity-flow{grid-template-columns:1fr;gap:.4rem}
+  .iraq-unity-flow>b{transform:rotate(-90deg);text-align:center;line-height:1}
+  .iraq-unity-pillar{min-height:7rem}
+  .iraq-unity-page blockquote{font-size:1.05rem;line-height:1.8}
+  .app-shell.iraq .iraq-controls,.app-shell.iraq-challenge .iraq-controls{position:sticky;bottom:0;z-index:10;align-items:stretch;flex-direction:column;padding:.55rem 0 .2rem;background:linear-gradient(180deg,#061624e8,#061624 25%);box-shadow:0 -1rem 1.5rem #0616244d}
+  .iraq-page-nav,.iraq-global-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem}
+  .iraq-page-nav button,.iraq-global-nav button{min-width:0;padding:.4rem .25rem;font-size:.78rem}
+  .iraq-global-nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .iraq-game-scope,.iraq-team-names{grid-template-columns:1fr}
+  .iraq-game-setup{text-align:start;align-items:stretch}
+  .iraq-game-setup .iraq-game-emblem{align-self:center}
+  .iraq-game-actions{justify-content:stretch}
+  .iraq-game-actions button{flex:1}
+  .iraq-game-scoreboard>div{min-width:0;flex:1;flex-direction:column;gap:.15rem;font-size:.83rem}
+  .iraq-game-scoreboard>p{font-size:.75rem}
+  .iraq-answer-grid{grid-template-columns:1fr}
+  .iraq-answer-grid button{text-align:start}
+  .iraq-final-scores{width:100%}
+  .iraq-final-scores p{min-width:0;flex:1}
+  .iraq-topic-menu{grid-template-columns:1fr}
+}
+@media(max-width:380px){
+  .iraq-country-grid{grid-template-columns:1fr}
+  .iraq-country-grid .iraq-touch-card{min-height:5.5rem}
+  .iraq-terrain-deck,.iraq-water-cards{grid-template-columns:1fr}
+  .iraq-terrain-deck .iraq-touch-card,.iraq-water-cards .iraq-touch-card{min-height:9rem}
+  .iraq-province-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .iraq-page-nav{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){
+  .iraq-page,.iraq-touch-card,.iraq-weather-icons span,.iraq-rain-dots i{animation:none!important;transition:none!important}
+}
