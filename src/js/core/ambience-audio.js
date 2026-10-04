@@ -95,7 +95,7 @@ export class AmbienceAudio {
     const start = performance.now();
     const step = now => {
       const progress = Math.min(1, (now - start) / duration);
-      player.volume = initial + (target - initial) * progress;
+      player.volume = this.clamp(initial + (target - initial) * progress);
       if (progress < 1) {
         this.fadeFrames.set(scene, requestAnimationFrame(step));
       } else {
